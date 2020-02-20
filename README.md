@@ -55,7 +55,7 @@ that you need to ensure that there are 3 images called: ssh1, ssh2, and ssh3.
 Next, get the ip addresses of the Docker images and put them into the hosts file:
 
 ```
-  $ rake ip
+  $ rake hosts
 ```
 
 This will create a local hosts file which you should inspect to ensure that it's what you want. It copies /etc/hosts to the local directory and appends the docker image IPs onto the end.
@@ -63,7 +63,7 @@ This will create a local hosts file which you should inspect to ensure that it's
 Careful with the next command which will make the hosts aliases usable:
 
 ```
-  $ sudo mv hosts /etc
+  $ sudo mv etc-hosts /etc/hosts
 ```
 
 ## Copy SSH Keys To Docker Images
@@ -78,3 +78,21 @@ https://confluence.atlassian.com/bitbucketserver/creating-ssh-keys-776639788.htm
 
 # Setup Ansible
 
+## Add Docker Images to our Ansible Inventory
+
+Ansible inventory is the list of machines that ansible controls and lives in /etc/ansible/hosts by default.
+
+We can re-run our command to ensure we have a hostsfile for ansible.
+
+```
+  $ rake hosts
+```
+
+Check the resulting ansible-hosts file to ensure that it looks good so that we don't lose any
+changes we made in the past.
+
+When we are okay with this file, we can deploy it:
+
+```
+  $ sudo mv ansible-hosts /etc/ansible/hosts
+```

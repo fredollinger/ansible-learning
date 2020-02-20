@@ -1,6 +1,6 @@
 INSTANCE="xenial_sshd"
 IMAGES=["ssh1", "ssh2", "ssh3"]
-TEMP_FILES=["ansible-hosts", "etc-hosts"]
+CLEAN_FILES=["ansible-hosts", "etc-hosts"]
 
 task :default => [:run]
 
@@ -35,14 +35,13 @@ task :hosts do
     sh "cp /etc/hosts etc-hosts"
     IMAGES.each { |image|
         sh "echo `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' #{image}` #{image} >> etc-hosts"
-        puts "echo #{image} >> ansible-hosts"
+        sh "echo #{image} >> ansible-hosts"
     }
 end
 
 desc "clean temp files"
 task :clean do
-  rm_rf "outputs"
   CLEAN_FILES.each { |file|
-      rm_rf #{file}
+      rm_rf file
   }
 end

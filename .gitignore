@@ -1,1 +1,2 @@
-hosts
+ansible-hosts
+etc-hosts
