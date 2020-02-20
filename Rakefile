@@ -11,6 +11,13 @@ task :create do
     }
 end
 
+desc "start existing docker images"
+task :start do
+    IMAGES.each { |image|
+        sh "docker start #{image}"
+    }
+end
+
 desc "run docker images with a shell"
 task :shell do
     puts "needs to be fixed"
@@ -45,3 +52,10 @@ task :clean do
       rm_rf file
   }
 end
+
+
+desc "ping test"
+task :ping do
+  sh "ansible all -m ping"
+end
+

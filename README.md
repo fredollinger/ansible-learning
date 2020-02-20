@@ -96,3 +96,54 @@ When we are okay with this file, we can deploy it:
 ```
   $ sudo mv ansible-hosts /etc/ansible/hosts
 ```
+
+## Ensure We Use the Root User 
+
+By default, ansible will use the local user as the ssh username. This will fail in our example unless
+the user logs in as root which is not recommeded. To make things work for all users do this edit the
+ansible config file:
+
+```
+  $ sudo vim /etc/ansible/ansible.cfg
+```
+Find this line and uncomment it like so:
+
+```
+remote_user = root 
+```
+
+NOTE: Comments are leading pound signs (#).
+
+## Test If Ansible Is Working
+
+Finally, you should be up and running. Use the ping test to ensure success:
+
+```
+  $ ansible all -m ping 
+```
+
+Success:
+
+```
+ssh1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+ssh2 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+ssh3 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+```
