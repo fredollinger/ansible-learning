@@ -1,4 +1,4 @@
-# Docker and Ansible Turtorial
+# Setting Up Ansible With Docker Tutorial
 
 ## Introduction
 
@@ -100,7 +100,7 @@ When we are okay with this file, we can deploy it:
 ## Ensure We Use the Root User 
 
 By default, ansible will use the local user as the ssh username. This will fail in our example unless
-the user logs in as root which is not recommeded. To make things work for all users do this edit the
+the user logs in as root which is not recommended. To make things work for all users do this edit the
 ansible config file:
 
 ```
