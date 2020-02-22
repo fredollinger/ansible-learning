@@ -80,9 +80,9 @@ https://confluence.atlassian.com/bitbucketserver/creating-ssh-keys-776639788.htm
 
 ## Add Docker Images to our Ansible Inventory
 
-Ansible inventory is the list of machines that ansible controls and lives in /etc/ansible/hosts by default.
+Ansible inventory is the list of machines that Ansible controls and lives in /etc/ansible/hosts by default.
 
-We can re-run our command to ensure we have a hostsfile for ansible.
+We can re-run our command to ensure we have a hostsfile for Ansible.
 
 ```
   $ rake hosts
