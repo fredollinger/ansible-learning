@@ -2,3 +2,6 @@
 - hosts: all
   tasks:
     - ping:
+    - name: Install PHP
+      apt: name=php5-cli state=present update_cache=yes
+      become: true
