@@ -1,6 +1,7 @@
 INSTANCE="xenial_sshd"
 IMAGES=["ssh1", "ssh2", "ssh3"]
 CLEAN_FILES=["ansible-hosts", "etc-hosts"]
+VAGRANT_SSH_KEY="/home/follinge/projects/ansible-learning/.vagrant/machines/default/virtualbox/private_key"
 
 task :default => [:run]
 
@@ -48,14 +49,17 @@ end
 
 desc "clean temp files"
 task :clean do
-  CLEAN_FILES.each { |file|
-      rm_rf file
-  }
+    CLEAN_FILES.each { |file|
+        rm_rf file
+    }
 end
-
 
 desc "ping test"
 task :ping do
-  sh "ansible all -m ping"
+    sh "ansible all -m ping"
 end
 
+desc "test playbook"
+task :playbook do
+    sh "cd vagrant && ansible-playbook -i inventory.ini provisioning/playbook.yml"
+end
