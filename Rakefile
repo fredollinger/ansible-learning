@@ -58,8 +58,3 @@ desc "ping test"
 task :ping do
     sh "ansible all -m ping"
 end
-
-desc "test playbook"
-task :playbook do
-    sh "cd vagrant && ansible-playbook -i inventory.ini provisioning/playbook.yml"
-end
