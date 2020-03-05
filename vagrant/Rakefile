@@ -9,3 +9,8 @@ desc "test playbook"
 task :playbook do
     sh "ansible-playbook -i inventory.ini provisioning/playbook.yml"
 end
+
+desc "ping test"
+task :ping do
+	sh "ansible php -m ping -i inventory.ini"
+end
